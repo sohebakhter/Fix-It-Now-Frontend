@@ -1,3 +1,5 @@
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 
 type TTechnicianProfile = {
@@ -33,4 +35,10 @@ type TUser = {
 
 export type TNavbarProps = {
     user: TUser
+}
+
+export type TSidebarItem = {
+    label?: string;
+    href: string;
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
 }
