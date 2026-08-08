@@ -48,9 +48,12 @@ export const loginAction = async (redirectTo: string, prevState: LoginState, for
 
     const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload
 
+    if (redirectTo && typeof redirectTo === "string" && redirectTo.startsWith("/") && !redirectTo.startsWith("//")) {
+        redirect(redirectTo, "replace");
+    }
+
     if (decodedToken.role === "CUSTOMER") {
         redirect("/dashboard");
-
     } else if (decodedToken.role === "TECHNICIAN") {
         redirect("/technician-dashboard");
     } else if (decodedToken.role === "ADMIN") {
@@ -62,7 +65,7 @@ export const loginAction = async (redirectTo: string, prevState: LoginState, for
 }
 
 export const logout = async () => {
-    await fetch("/api/auth/logout", {
-        method: "POST",
-    });
+    const cookieStore = await cookies();
+    cookieStore.delete("accessToken");
+    cookieStore.delete("refreshToken");
 };

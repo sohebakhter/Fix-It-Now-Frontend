@@ -53,7 +53,7 @@ export function Navbar({ user }: TNavbarProps) {
 
     toast.success("Logout Successfully");
 
-    router.push("/login");
+    router.replace("/login");
   };
 
   return (
@@ -148,7 +148,10 @@ export function Navbar({ user }: TNavbarProps) {
               href="/signup"
               className="rounded-md text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              <Button className="cursor-pointer border-sky-200 text-sky-600" variant={"outline"}>
+              <Button
+                className="cursor-pointer border-sky-200 text-sky-600"
+                variant={"outline"}
+              >
                 Sign Up
               </Button>
             </Link>

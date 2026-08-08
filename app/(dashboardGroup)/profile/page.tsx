@@ -12,12 +12,11 @@ import { getMe } from "@/service/getMe";
 
 const ProfilePage = async () => {
   const user = await getMe();
-  console.log(user, "profile");
   return (
     <div className="mx-auto max-w-7xl space-y-6 p-2">
       {/* Cover */}
       <Card className="overflow-hidden py-0">
-        <div className=" h-52 bg-linear-to-r from-blue-600 via-indigo-500 to-purple-600" />
+        <div className=" h-52 bg-linear-to-r from-[#7fa0f4] via-indigo-400 to-purple-500" />
 
         <CardContent className="relative">
           <div className="-mt-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -34,7 +33,7 @@ const ProfilePage = async () => {
                 <Avatar
                   className={`h-32 w-32 border-4 ${user.data?.status === "UN_BAN" ? "border-green-500" : "border-red-500"} shadow-lg`}
                 >
-                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarImage src="https://avatars.githubusercontent.com/u/218392443?v=4" />
                   <AvatarFallback>SA</AvatarFallback>
                 </Avatar>
               </div>
