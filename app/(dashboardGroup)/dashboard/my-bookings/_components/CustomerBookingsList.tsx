@@ -26,12 +26,14 @@ import {
   CheckCircle,
   Tag,
   CalendarX,
+  CreditCard,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
   cancelBookingAction,
   createReviewAction,
 } from "@/app/(publicGroup)/_actions/bookingActions";
+import { createCheckoutSessionAction } from "@/app/(dashboardGroup)/_actions/paymentActions";
 
 export type TBookingItem = {
   id: string;
@@ -90,6 +92,9 @@ export function CustomerBookingsList({ initialBookings }: CustomerBookingsListPr
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
   const [submittingReview, setSubmittingReview] = useState(false);
+
+  // Payment State
+  const [payingBookingId, setPayingBookingId] = useState<string | null>(null);
 
   const formatDate = (dateStr?: string) => {
     if (!dateStr) return "N/A";
@@ -206,7 +211,9 @@ export function CustomerBookingsList({ initialBookings }: CustomerBookingsListPr
     setSubmittingReview(false);
 
     if (res.success) {
-      toast.success("Review submitted successfully! Thank you for your feedback.");
+      toast.success(
+        "Review submitted successfully! Thank you for your feedback."
+      );
       setReviewModalBooking(null);
       router.refresh();
     } else {
@@ -326,6 +333,49 @@ export function CustomerBookingsList({ initialBookings }: CustomerBookingsListPr
                 </div>
 
                 <div className="flex items-center gap-2">
+                  {/* Pay Now Button (only when ACCEPTED) */}
+                  {booking.status === "ACCEPTED" && (
+                    <Button
+                      size="sm"
+                      disabled={payingBookingId === booking.id}
+                      onClick={async () => {
+                        setPayingBookingId(booking.id);
+                        try {
+                          localStorage.setItem("last_booking_id", booking.id);
+                          const res = await createCheckoutSessionAction(
+                            booking.id
+                          );
+                          if (res.success && res.data?.paymentUrl) {
+                            window.location.href = res.data.paymentUrl;
+                          } else {
+                            toast.error(
+                              res.message || "Failed to initiate payment"
+                            );
+                            setPayingBookingId(null);
+                          }
+                        } catch {
+                          toast.error(
+                            "Something went wrong. Please try again."
+                          );
+                          setPayingBookingId(null);
+                        }
+                      }}
+                      className="rounded-xl text-xs gap-1 bg-indigo-600 text-white hover:bg-indigo-700 shadow-xs"
+                    >
+                      {payingBookingId === booking.id ? (
+                        <>
+                          <Loader2 className="size-3.5 animate-spin" />
+                          <span>Processing...</span>
+                        </>
+                      ) : (
+                        <>
+                          <CreditCard className="size-3.5" />
+                          <span>Pay Now</span>
+                        </>
+                      )}
+                    </Button>
+                  )}
+
                   {/* Cancel Button (allowed before IN_PROGRESS) */}
                   {cancellable && (
                     <Button
