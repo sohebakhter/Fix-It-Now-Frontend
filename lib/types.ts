@@ -42,3 +42,43 @@ export type TSidebarItem = {
     href: string;
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
 }
+
+export type IService = {
+    id: string;
+    technicianId: string;
+    categoryId: string;
+    title: string;
+    description: string;
+    location: string;
+    price: number;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: string | null;
+    category: {
+        id: string;
+        name: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+    technician: {
+        id: string;
+        userId: string;
+        experience: string;
+        rating: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+}
+
+export type IServiceQuery = {
+    searchTerm?: string;
+    title?: string;
+    location?: string;
+    price?: string;
+    rating?: string;
+    sortBy?: string;
+    sortOrder?: string;
+    page?: string;
+    limit?: string;
+};

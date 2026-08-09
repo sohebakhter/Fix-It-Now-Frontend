@@ -46,7 +46,7 @@ export const loginAction = async (redirectTo: string, prevState: LoginState, for
         });
     }
 
-    const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload
+    const decodedToken = jwt.decode(result?.data?.accessToken) as JwtPayload
 
     if (redirectTo && typeof redirectTo === "string" && redirectTo.startsWith("/") && !redirectTo.startsWith("//")) {
         redirect(redirectTo, "replace");

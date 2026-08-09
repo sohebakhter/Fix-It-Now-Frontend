@@ -1,9 +1,21 @@
-import React from 'react'
+import { LoaderIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const GlobalLoading = () => {
+function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (
-    <div>GlobalLoading</div>
-  )
+    <LoaderIcon
+      role="status"
+      aria-label="Loading"
+      className={cn("size-6 animate-spin", className)}
+      {...props}
+    />
+  );
 }
 
-export default GlobalLoading
+export default function SpinnerCustom() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <Spinner />
+    </div>
+  );
+}

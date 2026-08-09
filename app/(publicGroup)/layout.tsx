@@ -11,7 +11,7 @@ const PublicGroupLayout = async ({
   return (
     <div>
       <Navbar user={user} />
-      {children}
+      <div className="mx-auto w-full max-w-7xl">{children}</div>
     </div>
   );
 };
