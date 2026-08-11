@@ -1,5 +1,5 @@
 import { TSidebarItem } from "@/lib/types";
-import { CreditCard, LayoutDashboard, } from "lucide-react";
+import { CreditCard, LayoutDashboard, Toolbox, } from "lucide-react";
 
 const CUSTOMER_SIDE_ITEMS: TSidebarItem[] = [
     {
@@ -22,6 +22,11 @@ const TECHNICIAN_SIDE_ITEMS: TSidebarItem[] = [
         href: "/technician-dashboard",
         icon: LayoutDashboard,
     },
+    {
+        label: "My Services",
+        href: "/technician-dashboard/my-services",
+        icon: Toolbox,
+    }
 ]
 
 const ADMIN_SIDE_ITEMS: TSidebarItem[] = [
