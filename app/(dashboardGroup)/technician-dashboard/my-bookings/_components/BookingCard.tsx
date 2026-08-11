@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useTransition } from "react";
+import React, { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
@@ -12,6 +12,7 @@ import {
   Play,
   CheckCircle2,
   Lock,
+  XCircle,
 } from "lucide-react";
 
 import {
@@ -35,6 +36,7 @@ interface BookingCardProps {
 export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [pendingAction, setPendingAction] = useState<string | null>(null);
 
   // Date/Time Formatting Helpers
   const formatDate = (dateStr?: string) => {
@@ -60,6 +62,7 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
   const handleUpdateStatus = (
     newStatus: "ACCEPTED" | "IN_PROGRESS" | "COMPLETED" | "DECLINED",
   ) => {
+    setPendingAction(newStatus);
     startTransition(async () => {
       try {
         const response = await updateBookingStatusAction({
@@ -83,6 +86,8 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
         }
       } catch (error: unknown) {
         toast.error((error as Error).message || "An unexpected error occurred");
+      } finally {
+        setPendingAction(null);
       }
     });
   };
@@ -90,25 +95,29 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
   // Render correct action button based on workflow logic
   const renderWorkflowAction = () => {
     if (booking.status === "REQUESTED") {
+      const isDeclining = isPending && pendingAction === "DECLINED";
+      const isAccepting = isPending && pendingAction === "ACCEPTED";
       return (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <Button
             onClick={() => handleUpdateStatus("DECLINED")}
             disabled={isPending}
-            className="rounded-xl font-semibold gap-1 shadow-sm min-w-24 bg-rose-600 hover:bg-rose-700 text-white"
+            variant="outline"
+            className="rounded-xl font-semibold gap-1.5 shadow-sm min-w-24 border-rose-500/30 text-rose-600 hover:bg-rose-500/10 hover:text-rose-700"
             size="sm"
           >
-            {isPending ? <Spinner className="size-4" /> : "Decline"}
+            {isDeclining ? <Spinner className="size-4" /> : <XCircle className="size-4" />}
+            Decline
           </Button>
 
           <Button
             onClick={() => handleUpdateStatus("ACCEPTED")}
             disabled={isPending}
-            className="rounded-xl font-semibold gap-1 shadow-sm min-w-32"
+            className="rounded-xl font-semibold gap-1.5 shadow-sm min-w-32"
             size="sm"
           >
-            {isPending ? <Spinner className="size-4" /> : <CheckCircle className="size-4" />}
-            Accept Request
+            {isAccepting ? <Spinner className="size-4" /> : <CheckCircle className="size-4" />}
+            Accept
           </Button>
         </div>
       );
