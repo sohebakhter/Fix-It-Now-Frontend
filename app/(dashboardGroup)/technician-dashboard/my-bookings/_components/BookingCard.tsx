@@ -14,7 +14,13 @@ import {
   Lock,
 } from "lucide-react";
 
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
@@ -51,7 +57,9 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
     return `${displayHours}:${minutesStr} ${ampm}`;
   };
 
-  const handleUpdateStatus = (newStatus: "ACCEPTED" | "IN_PROGRESS" | "COMPLETED") => {
+  const handleUpdateStatus = (
+    newStatus: "ACCEPTED" | "IN_PROGRESS" | "COMPLETED" | "DECLINED",
+  ) => {
     startTransition(async () => {
       try {
         const response = await updateBookingStatusAction({
@@ -60,8 +68,10 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
         });
 
         if (response.success) {
-          toast.success(response.message || `Booking status updated to ${newStatus}`);
-          
+          toast.success(
+            response.message || `Booking status updated to ${newStatus}`,
+          );
+
           const updatedBooking: TTechnicianBooking = {
             ...booking,
             status: newStatus,
@@ -81,15 +91,26 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
   const renderWorkflowAction = () => {
     if (booking.status === "REQUESTED") {
       return (
-        <Button
-          onClick={() => handleUpdateStatus("ACCEPTED")}
-          disabled={isPending}
-          className="rounded-xl font-semibold gap-1.5 shadow-sm min-w-32"
-          size="sm"
-        >
-          {isPending ? <Spinner className="size-4" /> : <CheckCircle className="size-4" />}
-          Accept Request
-        </Button>
+        <div className="flex items-center gap-1">
+          <Button
+            onClick={() => handleUpdateStatus("DECLINED")}
+            disabled={isPending}
+            className="rounded-xl font-semibold gap-1 shadow-sm min-w-24 bg-rose-600 hover:bg-rose-700 text-white"
+            size="sm"
+          >
+            {isPending ? <Spinner className="size-4" /> : "Decline"}
+          </Button>
+
+          <Button
+            onClick={() => handleUpdateStatus("ACCEPTED")}
+            disabled={isPending}
+            className="rounded-xl font-semibold gap-1 shadow-sm min-w-32"
+            size="sm"
+          >
+            {isPending ? <Spinner className="size-4" /> : <CheckCircle className="size-4" />}
+            Accept Request
+          </Button>
+        </div>
       );
     }
 
@@ -101,7 +122,11 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
           className="rounded-xl font-semibold gap-1.5 shadow-sm min-w-32 bg-indigo-600 hover:bg-indigo-700 text-white"
           size="sm"
         >
-          {isPending ? <Spinner className="size-4" /> : <Play className="size-4" />}
+          {isPending ? (
+            <Spinner className="size-4" />
+          ) : (
+            <Play className="size-4" />
+          )}
           Start Job
         </Button>
       );
@@ -115,7 +140,11 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
           className="rounded-xl font-semibold gap-1.5 shadow-sm min-w-32 bg-emerald-600 hover:bg-emerald-700 text-white"
           size="sm"
         >
-          {isPending ? <Spinner className="size-4" /> : <CheckCircle2 className="size-4" />}
+          {isPending ? (
+            <Spinner className="size-4" />
+          ) : (
+            <CheckCircle2 className="size-4" />
+          )}
           Complete Job
         </Button>
       );
@@ -170,13 +199,16 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
     <Card className="group overflow-hidden rounded-3xl border border-border/50 bg-card hover:shadow-md transition-all duration-300 flex flex-col justify-between">
       <CardHeader className="space-y-2 pb-4 border-b border-border/30 bg-muted/5">
         <div className="flex items-center justify-between gap-2">
-          <Badge variant="secondary" className="rounded-lg text-xs font-semibold px-2 py-0.5">
+          <Badge
+            variant="secondary"
+            className="rounded-lg text-xs font-semibold px-2 py-0.5"
+          >
             {booking.service?.category?.name || "Service Category"}
           </Badge>
           <Badge
             variant="outline"
             className={`rounded-lg text-xs px-2.5 py-0.5 font-bold uppercase tracking-wide ${getStatusBadgeStyle(
-              booking.status
+              booking.status,
             )}`}
           >
             {booking.status}
@@ -221,7 +253,8 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
             <div className="flex items-center gap-1.5 text-muted-foreground justify-end">
               <Clock className="size-3.5 shrink-0 text-muted-foreground/80" />
               <span className="font-bold text-foreground truncate">
-                {formatTime(booking.availability?.startTime)} - {formatTime(booking.availability?.endTime)}
+                {formatTime(booking.availability?.startTime)} -{" "}
+                {formatTime(booking.availability?.endTime)}
               </span>
             </div>
           </div>
@@ -239,7 +272,7 @@ export function BookingCard({ booking, onStatusChange }: BookingCardProps) {
           <Badge
             variant="outline"
             className={`rounded-lg px-2 py-0.5 text-[10px] font-bold ${getPaymentBadgeStyle(
-              booking.payment?.status || "PENDING"
+              booking.payment?.status || "PENDING",
             )}`}
           >
             Payment: {booking.payment?.status || "PENDING"}
