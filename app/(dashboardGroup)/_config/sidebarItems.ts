@@ -1,5 +1,5 @@
 import { TSidebarItem } from "@/lib/types";
-import { CreditCard, LayoutDashboard, Toolbox, } from "lucide-react";
+import { Calendar, CreditCard, LayoutDashboard, Toolbox, } from "lucide-react";
 
 const CUSTOMER_SIDE_ITEMS: TSidebarItem[] = [
     {
@@ -26,6 +26,11 @@ const TECHNICIAN_SIDE_ITEMS: TSidebarItem[] = [
         label: "My Services",
         href: "/technician-dashboard/my-services",
         icon: Toolbox,
+    },
+    {
+        label: "My Availabilities",
+        href: "/technician-dashboard/my-availabilities",
+        icon: Calendar,
     }
 ]
 

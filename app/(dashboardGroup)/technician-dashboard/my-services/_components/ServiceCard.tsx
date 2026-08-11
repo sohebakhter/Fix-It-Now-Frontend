@@ -1,14 +1,16 @@
-import { MapPin, Tag } from "lucide-react";
+import { MapPin, Tag, Pencil } from "lucide-react";
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import type { IService } from "@/lib/types";
 
 interface ServiceCardProps {
   service: IService;
+  onEdit?: (service: IService) => void;
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, onEdit }: ServiceCardProps) {
   return (
     <Card className="group overflow-hidden rounded-3xl border border-border/50 bg-card hover:shadow-md transition-all duration-300 flex flex-col">
       <CardHeader className="space-y-2 pb-4">
@@ -17,16 +19,29 @@ export function ServiceCard({ service }: ServiceCardProps) {
             <Tag className="size-3" />
             {service.category?.name || "Category"}
           </Badge>
-          <Badge
-            variant="outline"
-            className={`rounded-lg text-xs px-2 py-0.5 font-medium ${
-              service.status === "ACTIVE"
-                ? "bg-green-500/10 text-green-600 border-green-500/20"
-                : "bg-amber-500/10 text-amber-600 border-amber-500/20"
-            }`}
-          >
-            {service.status}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge
+              variant="outline"
+              className={`rounded-lg text-xs px-2 py-0.5 font-medium ${
+                service.status === "ACTIVE"
+                  ? "bg-green-500/10 text-green-600 border-green-500/20"
+                  : "bg-amber-500/10 text-amber-600 border-amber-500/20"
+              }`}
+            >
+              {service.status}
+            </Badge>
+            {onEdit && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-7 rounded-lg text-muted-foreground hover:text-foreground shrink-0"
+                onClick={() => onEdit(service)}
+                title="Edit Service"
+              >
+                <Pencil className="size-3.5" />
+              </Button>
+            )}
+          </div>
         </div>
         <CardTitle className="text-lg font-extrabold text-foreground group-hover:text-primary transition-colors line-clamp-1">
           {service.title}

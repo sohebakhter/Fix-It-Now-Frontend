@@ -82,3 +82,31 @@ export type IServiceQuery = {
     page?: string;
     limit?: string;
 };
+
+export type TAvailability = {
+  id: string;
+  technicianId: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  createdAt?: string;
+  updatedAt?: string;
+  technicianProfile?: {
+    id: string;
+    userId: string;
+    experience: string;
+    rating: string;
+    createdAt?: string;
+    updatedAt?: string;
+  };
+  bookings?: {
+    id: string;
+    serviceId: string;
+    customerId: string;
+    availabilityId: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  booking?: unknown;
+};

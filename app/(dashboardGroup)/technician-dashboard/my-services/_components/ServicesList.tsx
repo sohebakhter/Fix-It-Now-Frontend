@@ -23,6 +23,7 @@ import {
 
 import { createServiceAction } from "@/app/(dashboardGroup)/_actions/serviceActions";
 import { ServiceCard } from "./ServiceCard";
+import { EditServiceDialog } from "./EditServiceDialog";
 import type { IService } from "@/lib/types";
 
 type Category = {
@@ -43,12 +44,16 @@ export function ServicesList({ initialServices, categories }: ServicesListProps)
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  // Form State
+  // Form State for Add
   const [categoryId, setCategoryId] = useState(categories[0]?.id || "");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
+
+  // Form State for Edit
+  const [editOpen, setEditOpen] = useState(false);
+  const [editingService, setEditingService] = useState<IService | null>(null);
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
@@ -62,6 +67,17 @@ export function ServicesList({ initialServices, categories }: ServicesListProps)
         setCategoryId(categories[0].id);
       }
     }
+  };
+
+  const startEditing = (service: IService) => {
+    setEditingService(service);
+    setEditOpen(true);
+  };
+
+  const handleEditSuccess = (updatedService: IService) => {
+    setServices((prev) =>
+      prev.map((s) => (s.id === updatedService.id ? updatedService : s))
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -277,10 +293,20 @@ export function ServicesList({ initialServices, categories }: ServicesListProps)
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+            <ServiceCard key={service.id} service={service} onEdit={startEditing} />
           ))}
         </div>
       )}
+
+      {/* Edit Service Dialog */}
+      <EditServiceDialog
+        key={editingService?.id || "empty"}
+        isOpen={editOpen}
+        onOpenChange={setEditOpen}
+        service={editingService}
+        categories={categories}
+        onSuccess={handleEditSuccess}
+      />
     </div>
   );
 }

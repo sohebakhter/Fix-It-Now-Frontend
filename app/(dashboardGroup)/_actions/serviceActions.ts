@@ -108,3 +108,48 @@ export const createServiceAction = async (payload: TCreateServicePayload) => {
     };
   }
 };
+
+export const updateServiceAction = async (
+  serviceId: string,
+  payload: Partial<TCreateServicePayload>
+) => {
+  try {
+    const cookieStore = await cookies();
+    const accessToken = cookieStore.get("accessToken")?.value;
+
+    if (!accessToken) {
+      return {
+        success: false,
+        statusCode: 401,
+        message: "Unauthorized. Please log in first.",
+      };
+    }
+
+    const res = await fetch(
+      `${process.env.BACKEND_API_URL}/api/services/${serviceId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          cookie: `accessToken=${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const result = await res.json();
+
+    if (result.success) {
+      revalidateTag("services", { expire: 0 });
+    }
+
+    return result;
+  } catch (error: unknown) {
+    return {
+      success: false,
+      statusCode: 500,
+      message: (error as Error).message || "Failed to update service",
+    };
+  }
+};
