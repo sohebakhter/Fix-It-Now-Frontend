@@ -110,3 +110,47 @@ export type TAvailability = {
   } | null;
   booking?: unknown;
 };
+
+export type TTechnicianBooking = {
+  id: string;
+  customerId: string;
+  serviceId: string;
+  availabilityId: string;
+  status:
+    | "REQUESTED"
+    | "ACCEPTED"
+    | "PAID"
+    | "IN_PROGRESS"
+    | "COMPLETED"
+    | "DECLINED"
+    | "CANCELLED";
+  createdAt: string;
+  updatedAt: string;
+  service?: {
+    id: string;
+    title: string;
+    description?: string;
+    location?: string;
+    price?: number;
+    status?: string;
+    category?: {
+      name: string;
+    };
+  };
+  availability?: {
+    id: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+  };
+  customer?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  payment?: {
+    id: string;
+    amount: number;
+    status: "PENDING" | "PAID" | "FAILED";
+  };
+};

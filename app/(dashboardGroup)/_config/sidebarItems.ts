@@ -31,6 +31,11 @@ const TECHNICIAN_SIDE_ITEMS: TSidebarItem[] = [
         label: "My Availabilities",
         href: "/technician-dashboard/my-availabilities",
         icon: Calendar,
+    },
+    {
+        label: "My Bookings",
+        href: "/technician-dashboard/my-bookings",
+        icon: CreditCard,
     }
 ]
 
