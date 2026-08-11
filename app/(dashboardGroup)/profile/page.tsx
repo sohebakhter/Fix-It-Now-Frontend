@@ -10,6 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { getMe } from "@/service/getMe";
 
+export const instant = false;
+
 const ProfilePage = async () => {
   const user = await getMe();
   return (
