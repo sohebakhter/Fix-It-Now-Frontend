@@ -1,5 +1,5 @@
 import { TSidebarItem } from "@/lib/types";
-import { Calendar, CreditCard, LayoutDashboard, Toolbox, } from "lucide-react";
+import { Calendar, CreditCard, LayoutDashboard, Toolbox, Users, } from "lucide-react";
 
 const CUSTOMER_SIDE_ITEMS: TSidebarItem[] = [
     {
@@ -44,6 +44,11 @@ const ADMIN_SIDE_ITEMS: TSidebarItem[] = [
         label: "Overview",
         href: "/admin-dashboard",
         icon: LayoutDashboard,
+    },
+    {
+        label: "All Users",
+        href: "/admin-dashboard/all-users",
+        icon: Users,
     },
 ]
 

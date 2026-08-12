@@ -11,7 +11,7 @@ type TTechnicianProfile = {
     updatedAt: string;
 }
 
-type TUserData = {
+export type TUserData = {
     id: string;
     name: string;
     email: string;
@@ -23,7 +23,7 @@ type TUserData = {
     technicianProfile: TTechnicianProfile | null;
 }
 
-type TUser = {
+export type TUser = {
     success: boolean;
     statusCode: number;
     message: string;
