@@ -33,6 +33,7 @@ const userMenuItems = [
 ];
 
 export function Navbar({ user }: TNavbarProps) {
+  console.log(user, "user---->");
   const router = useRouter();
 
   const dashboardSwitch = (): string => {
@@ -88,7 +89,7 @@ export function Navbar({ user }: TNavbarProps) {
               className="flex h-9 w-9 items-center justify-center rounded-full outline-none ring-offset-background transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
             >
               <Avatar className="h-9 w-9">
-                <AvatarImage src={user?.data?.name || ""} alt="User avatar" />
+                <AvatarImage src={user?.data?.image || ""} alt="User avatar" />
                 <AvatarFallback>
                   {user.data.name.slice(0, 1).toLocaleUpperCase()}
                 </AvatarFallback>

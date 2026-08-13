@@ -14,6 +14,7 @@ type TTechnicianProfile = {
 export type TUserData = {
   id: string;
   name: string;
+  image?: string;
   email: string;
   role: string;
   status: string;
@@ -236,26 +237,26 @@ export interface StatCardProps {
 }
 
 export type TSignUpState = {
-    success: boolean,
-    statusCode: number,
-    message: string
-    data: {
-        id: string,
-        name: string,
-        image?: string,
-        email: string,
-        role: string,
-        status: string,
-        stripeCustomerId: string | null,
-        createdAt: string,
-        updatedAt: string,
-        technicianProfile: {
-            id: string,
-            userId: string,
-            experience: string,
-            rating: string,
-            createdAt: string,
-            updatedAt: string
-        } | null
-    }
+  success: boolean,
+  statusCode: number,
+  message: string
+  data: {
+    id: string,
+    name: string,
+    image?: string,
+    email: string,
+    role: string,
+    status: string,
+    stripeCustomerId: string | null,
+    createdAt: string,
+    updatedAt: string,
+    technicianProfile: {
+      id: string,
+      userId: string,
+      experience: string,
+      rating: string,
+      createdAt: string,
+      updatedAt: string
+    } | null
+  }
 }
