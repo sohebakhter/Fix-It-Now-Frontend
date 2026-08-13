@@ -55,6 +55,11 @@ const ADMIN_SIDE_ITEMS: TSidebarItem[] = [
         href: "/admin-dashboard/categories",
         icon: ChartBarStacked,
     },
+    {
+        label: "All Bookings",
+        href: "/admin-dashboard/all-bookings",
+        icon: CreditCard,
+    },
 ]
 
 export const sidebarItems = {
