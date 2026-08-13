@@ -38,12 +38,15 @@ import {
   getMyBookings,
   TAvailability,
 } from "../_actions/bookingActions";
+import EditServiceButton from "./EditServiceButton";
+import DeleteServiceButton from "./DeleteServiceButton";
 
 type ServiceCardProps = {
   service: IService;
+  isAdmin?: boolean;
 };
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
   const router = useRouter();
   const ratingNum = service.technician?.rating
     ? parseFloat(service.technician.rating)
@@ -165,7 +168,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         <div>
           <CardHeader className="p-5 pb-3 space-y-3">
             {/* Top badges: Status & Category */}
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between gap-2 w-full">
               <div className="flex items-center gap-1.5 flex-wrap">
                 {service.category?.name && (
                   <Badge
@@ -190,6 +193,14 @@ export function ServiceCard({ service }: ServiceCardProps) {
                   {service.status}
                 </Badge>
               </div>
+
+              {/* Admin Actions */}
+              {isAdmin && (
+                <div className="flex items-center gap-1 shrink-0">
+                  <EditServiceButton service={service} />
+                  <DeleteServiceButton serviceId={service.id} serviceTitle={service.title} />
+                </div>
+              )}
             </div>
 
             {/* Service Title */}

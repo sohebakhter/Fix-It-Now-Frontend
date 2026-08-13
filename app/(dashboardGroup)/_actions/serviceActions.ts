@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 
 export type TCreateServicePayload = {
   categoryId: string;
@@ -97,6 +97,8 @@ export const createServiceAction = async (payload: TCreateServicePayload) => {
 
     if (result.success) {
       revalidateTag("services", { expire: 0 });
+      revalidatePath("/services");
+      revalidatePath("/technician-dashboard/my-services");
     }
 
     return result;
@@ -142,6 +144,8 @@ export const updateServiceAction = async (
 
     if (result.success) {
       revalidateTag("services", { expire: 0 });
+      revalidatePath("/services");
+      revalidatePath("/technician-dashboard/my-services");
     }
 
     return result;
@@ -150,6 +154,48 @@ export const updateServiceAction = async (
       success: false,
       statusCode: 500,
       message: (error as Error).message || "Failed to update service",
+    };
+  }
+};
+
+export const deleteServiceAction = async (serviceId: string) => {
+  try {
+    const cookieStore = await cookies();
+    const accessToken = cookieStore.get("accessToken")?.value;
+
+    if (!accessToken) {
+      return {
+        success: false,
+        statusCode: 401,
+        message: "Unauthorized. Please log in first.",
+      };
+    }
+
+    const res = await fetch(
+      `${process.env.BACKEND_API_URL}/api/services/${serviceId}`,
+      {
+        method: "DELETE",
+        headers: {
+          cookie: `accessToken=${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    const result = await res.json();
+
+    if (result.success) {
+      revalidateTag("services", { expire: 0 });
+      revalidatePath("/services");
+      revalidatePath("/technician-dashboard/my-services");
+    }
+
+    return result;
+  } catch (error: unknown) {
+    return {
+      success: false,
+      statusCode: 500,
+      message: (error as Error).message || "Failed to delete service",
     };
   }
 };
