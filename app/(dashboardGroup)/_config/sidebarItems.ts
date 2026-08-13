@@ -1,5 +1,5 @@
 import { TSidebarItem } from "@/lib/types";
-import { Calendar, ChartBarStacked, CreditCard, LayoutDashboard, Toolbox, Users, } from "lucide-react";
+import { Calendar, ChartBarStacked, CreditCard, LayoutDashboard, RotateCcwClock, Toolbox, Users, } from "lucide-react";
 
 const CUSTOMER_SIDE_ITEMS: TSidebarItem[] = [
     {
@@ -11,6 +11,11 @@ const CUSTOMER_SIDE_ITEMS: TSidebarItem[] = [
         label: "My Bookings",
         href: "/dashboard/my-bookings",
         icon: CreditCard,
+    },
+    {
+        label: "Payment History",
+        href: "/dashboard/payments",
+        icon: RotateCcwClock,
     },
 
 

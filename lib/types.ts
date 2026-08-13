@@ -161,3 +161,25 @@ export type TCategory = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type TPaymentItem = {
+  id: string;
+  bookingId: string;
+  customerId: string;
+  amount: number;
+  currency: string;
+  status: "PENDING" | "PAID" | "FAILED" | "REFUNDED";
+  transactionId?: string;
+  paymentMethod?: string;
+  createdAt: string;
+  updatedAt: string;
+  booking?: {
+    id: string;
+    service?: {
+      title: string;
+      category?: {
+        name: string;
+      };
+    };
+  };
+};
