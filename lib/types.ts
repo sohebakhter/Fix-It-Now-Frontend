@@ -183,3 +183,39 @@ export type TPaymentItem = {
     };
   };
 };
+
+export type TTechnicianPublicProfile = {
+  id: string;
+  userId: string;
+  experience: string;
+  rating: string;
+  createdAt?: string;
+  updatedAt?: string;
+  user?: {
+    id?: string;
+    name?: string;
+    email?: string;
+    status?: string;
+  };
+};
+
+export type TServiceReview = {
+  id: string;
+  bookingId: string;
+  rating: number;
+  comment?: string;
+  createdAt?: string;
+  customer?: {
+    id?: string;
+    name?: string;
+  };
+};
+
+export type BookServiceButtonProps = {
+  serviceId: string;
+  technicianId: string;
+  serviceTitle: string;
+  servicePrice: number;
+  serviceLocation?: string;
+  isActive: boolean;
+};

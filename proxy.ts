@@ -7,7 +7,7 @@ import { getNewAccessToken } from './service/tokenRevalidation';
 
 const AUTH_ROUTES = ['/login', '/signup'];
 
-const PUBLIC_ROUTES = ['/'];
+const PUBLIC_ROUTES = ['/', '/services',];
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
