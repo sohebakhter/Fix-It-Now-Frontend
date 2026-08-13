@@ -3,84 +3,84 @@ import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 
 type TTechnicianProfile = {
-    id: string;
-    userId: string;
-    experience: string;
-    rating: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string;
+  userId: string;
+  experience: string;
+  rating: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type TUserData = {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    status: string;
-    stripeCustomerId: string;
-    createdAt: string;
-    updatedAt: string;
-    technicianProfile: TTechnicianProfile | null;
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: string;
+  stripeCustomerId: string;
+  createdAt: string;
+  updatedAt: string;
+  technicianProfile: TTechnicianProfile | null;
 }
 
 export type TUser = {
-    success: boolean;
-    statusCode: number;
-    message: string;
-    data: TUserData;
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: TUserData;
 }
 
 
 
 
 export type TNavbarProps = {
-    user: TUser
+  user: TUser
 }
 
 export type TSidebarItem = {
-    label?: string;
-    href: string;
-    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
+  label?: string;
+  href: string;
+  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
 }
 
 export type IService = {
+  id: string;
+  technicianId: string;
+  categoryId: string;
+  title: string;
+  description: string;
+  location: string;
+  price: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string | null;
+  category: {
     id: string;
-    technicianId: string;
-    categoryId: string;
-    title: string;
-    description: string;
-    location: string;
-    price: number;
-    status: string;
+    name: string;
     createdAt: string;
     updatedAt: string;
-    userId: string | null;
-    category: {
-        id: string;
-        name: string;
-        createdAt: string;
-        updatedAt: string;
-    };
-    technician: {
-        id: string;
-        userId: string;
-        experience: string;
-        rating: string;
-        createdAt: string;
-        updatedAt: string;
-    };
+  };
+  technician: {
+    id: string;
+    userId: string;
+    experience: string;
+    rating: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export type IServiceQuery = {
-    searchTerm?: string;
-    title?: string;
-    location?: string;
-    price?: string;
-    rating?: string;
-    sortBy?: string;
-    sortOrder?: string;
-    page?: string;
-    limit?: string;
+  searchTerm?: string;
+  title?: string;
+  location?: string;
+  price?: string;
+  rating?: string;
+  sortBy?: string;
+  sortOrder?: string;
+  page?: string;
+  limit?: string;
 };
 
 export type TAvailability = {
@@ -117,13 +117,13 @@ export type TTechnicianBooking = {
   serviceId: string;
   availabilityId: string;
   status:
-    | "REQUESTED"
-    | "ACCEPTED"
-    | "PAID"
-    | "IN_PROGRESS"
-    | "COMPLETED"
-    | "DECLINED"
-    | "CANCELLED";
+  | "REQUESTED"
+  | "ACCEPTED"
+  | "PAID"
+  | "IN_PROGRESS"
+  | "COMPLETED"
+  | "DECLINED"
+  | "CANCELLED";
   createdAt: string;
   updatedAt: string;
   service?: {
@@ -153,4 +153,11 @@ export type TTechnicianBooking = {
     amount: number;
     status: "PENDING" | "PAID" | "FAILED";
   };
+};
+
+export type TCategory = {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
 };
