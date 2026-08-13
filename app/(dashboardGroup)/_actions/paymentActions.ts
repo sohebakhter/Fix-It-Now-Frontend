@@ -35,6 +35,10 @@ export const createCheckoutSessionAction = async (bookingId: string) => {
     );
 
     const result = await res.json();
+    if (result.success) {
+      revalidateTag("payment-history", { expire: 0 });
+      revalidateTag(`payment-${bookingId}`, { expire: 0 });
+    }
     return result;
   } catch (error: unknown) {
     return {
