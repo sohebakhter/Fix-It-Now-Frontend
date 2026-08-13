@@ -89,7 +89,9 @@ export function Navbar({ user }: TNavbarProps) {
             >
               <Avatar className="h-9 w-9">
                 <AvatarImage src={user?.data?.name || ""} alt="User avatar" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarFallback>
+                  {user.data.name.slice(0, 1).toLocaleUpperCase()}
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">

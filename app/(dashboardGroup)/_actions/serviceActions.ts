@@ -9,6 +9,7 @@ export type TCreateServicePayload = {
   description: string;
   location: string;
   price: number;
+  status: string;
 };
 
 export const getMyServicesAction = async () => {
@@ -115,6 +116,7 @@ export const updateServiceAction = async (
   serviceId: string,
   payload: Partial<TCreateServicePayload>
 ) => {
+
   try {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
@@ -146,6 +148,7 @@ export const updateServiceAction = async (
       revalidateTag("services", { expire: 0 });
       revalidatePath("/services");
       revalidatePath("/technician-dashboard/my-services");
+      revalidateTag(`service-${serviceId}`, { expire: 0 });
     }
 
     return result;

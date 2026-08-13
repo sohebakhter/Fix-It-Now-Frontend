@@ -18,7 +18,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { getCategoriesAction, updateServiceAction } from "@/app/(dashboardGroup)/_actions/serviceActions";
+import {
+  getCategoriesAction,
+  updateServiceAction,
+} from "@/app/(dashboardGroup)/_actions/serviceActions";
 import type { IService } from "@/lib/types";
 
 interface EditServiceButtonProps {
@@ -35,8 +38,11 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
   const [title, setTitle] = useState(service.title || "");
   const [description, setDescription] = useState(service.description || "");
   const [price, setPrice] = useState(service.price?.toString() || "");
+  const [status, setStatus] = useState(service.status?.toString() || "PENDING");
 
-  const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>(
+    [],
+  );
   const [loadingCategories, setLoadingCategories] = useState(false);
 
   const handleOpen = async () => {
@@ -79,6 +85,7 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
           description: description.trim(),
           location: service.location,
           price: parsedPrice,
+          status,
         };
 
         const response = await updateServiceAction(service.id, payload);
@@ -112,11 +119,29 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
           <Pencil className="size-3.5" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-md p-6 rounded-3xl" onClick={(e) => e.stopPropagation()}>
+      <DialogContent
+        className="max-w-md p-6 rounded-3xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">Edit Service</DialogTitle>
+          <div className="flex items-center gap-4">
+            <DialogTitle className="text-xl font-bold">Edit Service</DialogTitle>
+            <Button
+              type="button"
+              size="sm"
+              variant={status === "ACTIVE" ? "default" : "outline"}
+              onClick={() => {
+                setStatus(status === "ACTIVE" ? "INACTIVE" : "ACTIVE");
+              }}
+              disabled={isPending}
+              className="rounded-xl text-xs whitespace-nowrap"
+            >
+              {status === "ACTIVE" ? "Mark INACTIVE" : "Mark ACTIVE"}
+            </Button>
+          </div>
           <DialogDescription className="text-xs text-muted-foreground">
-            Update the service details. Note that location changes are not editable.
+            Update the service details. Note that location changes are not
+            editable.
           </DialogDescription>
         </DialogHeader>
 
@@ -128,7 +153,12 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 py-2">
             <div className="space-y-1.5">
-              <Label htmlFor="edit-service-category" className="text-xs font-semibold text-foreground">Category</Label>
+              <Label
+                htmlFor="edit-service-category"
+                className="text-xs font-semibold text-foreground"
+              >
+                Category
+              </Label>
               <select
                 id="edit-service-category"
                 value={categoryId}
@@ -141,7 +171,11 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
                   Select a category
                 </option>
                 {categories.map((cat) => (
-                  <option key={cat.id} value={cat.id} className="bg-background text-foreground">
+                  <option
+                    key={cat.id}
+                    value={cat.id}
+                    className="bg-background text-foreground"
+                  >
                     {cat.name}
                   </option>
                 ))}
@@ -149,7 +183,12 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="edit-service-title" className="text-xs font-semibold text-foreground">Title</Label>
+              <Label
+                htmlFor="edit-service-title"
+                className="text-xs font-semibold text-foreground"
+              >
+                Title
+              </Label>
               <Input
                 id="edit-service-title"
                 type="text"
@@ -163,7 +202,12 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="edit-service-description" className="text-xs font-semibold text-foreground">Description</Label>
+              <Label
+                htmlFor="edit-service-description"
+                className="text-xs font-semibold text-foreground"
+              >
+                Description
+              </Label>
               <Textarea
                 id="edit-service-description"
                 placeholder="e.g. Leakage repair service."
@@ -176,7 +220,12 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label htmlFor="edit-service-location" className="text-xs font-semibold text-foreground">Location</Label>
+                <Label
+                  htmlFor="edit-service-location"
+                  className="text-xs font-semibold text-foreground"
+                >
+                  Location
+                </Label>
                 <Input
                   id="edit-service-location"
                   type="text"
@@ -187,7 +236,12 @@ export function EditServiceButton({ service }: EditServiceButtonProps) {
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="edit-service-price" className="text-xs font-semibold text-foreground">Price (BDT)</Label>
+                <Label
+                  htmlFor="edit-service-price"
+                  className="text-xs font-semibold text-foreground"
+                >
+                  Price (BDT)
+                </Label>
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                   <Input

@@ -30,7 +30,7 @@ export function TechnicianDetails({ technician }: TechnicianDetailsProps) {
   const ratingNum = technician.rating ? parseFloat(technician.rating) : 0;
   const experience = technician.experience ?? "N/A";
   const techName = technician.user?.name ?? "Technician";
-  const isActive = technician.user?.status === "ACTIVE";
+  const isActive = technician.user?.status === "UN_BAN";
 
   return (
     <Card className="overflow-hidden rounded-3xl border border-border/80 bg-card/60 backdrop-blur-xs">
