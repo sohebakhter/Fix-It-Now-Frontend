@@ -234,3 +234,28 @@ export interface StatCardProps {
     positive: boolean;
   };
 }
+
+export type TSignUpState = {
+    success: boolean,
+    statusCode: number,
+    message: string
+    data: {
+        id: string,
+        name: string,
+        image?: string,
+        email: string,
+        role: string,
+        status: string,
+        stripeCustomerId: string | null,
+        createdAt: string,
+        updatedAt: string,
+        technicianProfile: {
+            id: string,
+            userId: string,
+            experience: string,
+            rating: string,
+            createdAt: string,
+            updatedAt: string
+        } | null
+    }
+}
