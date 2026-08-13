@@ -1,4 +1,4 @@
-import { LucideProps } from "lucide-react";
+import { LucideIcon, LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 
@@ -219,3 +219,18 @@ export type BookServiceButtonProps = {
   serviceLocation?: string;
   isActive: boolean;
 };
+
+
+export interface StatCardProps {
+  title: string;
+  value: string | number;
+  subtitle?: string;
+  icon: LucideIcon;
+  gradient: string;
+  iconBg: string;
+  iconColor: string;
+  trend?: {
+    value: string;
+    positive: boolean;
+  };
+}
