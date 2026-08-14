@@ -6,7 +6,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen grid lg:grid-cols-12 bg-gray-50 dark:bg-gray-950 font-sans">
       {/* Left side: Project Info & Vibes */}
-      <div className="hidden lg:flex lg:col-span-6 relative overflow-hidden bg-linear-to-br from-sky-600 via-sky-500 to-amber-500 flex-col justify-between p-12 text-white">
+      <div className="hidden lg:flex lg:col-span-6 relative overflow-hidden bg-linear-to-br from-sky-600 via-sky-500 to-blue-500 flex-col justify-between p-12 text-white">
         {/* Background decorative patterns */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
         <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />

@@ -33,7 +33,6 @@ const userMenuItems = [
 ];
 
 export function Navbar({ user }: TNavbarProps) {
-  console.log(user, "user---->");
   const router = useRouter();
 
   const dashboardSwitch = (): string => {

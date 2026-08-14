@@ -195,6 +195,7 @@ export type TTechnicianPublicProfile = {
   user?: {
     id?: string;
     name?: string;
+    image?: string;
     email?: string;
     status?: string;
   };

@@ -2,8 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, Award, User, BadgeCheck } from "lucide-react";
 import { TTechnicianPublicProfile } from "@/lib/types";
-
-
+import Image from "next/image";
 
 type TechnicianDetailsProps = {
   technician: TTechnicianPublicProfile;
@@ -30,6 +29,7 @@ export function TechnicianDetails({ technician }: TechnicianDetailsProps) {
   const ratingNum = technician.rating ? parseFloat(technician.rating) : 0;
   const experience = technician.experience ?? "N/A";
   const techName = technician.user?.name ?? "Technician";
+  const techImage = technician.user?.image ?? "";
   const isActive = technician.user?.status === "UN_BAN";
 
   return (
@@ -47,7 +47,17 @@ export function TechnicianDetails({ technician }: TechnicianDetailsProps) {
         {/* Avatar + Name */}
         <div className="flex items-center gap-3">
           <div className="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary font-bold text-lg shrink-0">
-            {techName.charAt(0).toUpperCase()}
+            {techImage ? (
+              <Image
+                src={techImage}
+                width={120}
+                height={100}
+                alt="Technician Image"
+                className="flex size-12 items-center justify-center rounded-2xl"
+              />
+            ) : (
+              techName.charAt(0).toUpperCase()
+            )}
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">

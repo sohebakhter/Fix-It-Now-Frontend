@@ -1,4 +1,4 @@
-import { Mail, MapPin, Globe, Pencil, Link, Ban } from "lucide-react";
+import { Mail, MapPin, Globe, Link, Ban } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { getMe } from "@/service/getMe";
+import { EditProfileButton } from "@/app/(dashboardGroup)/profile/_components/EditProfileButton";
+import EditProfileModal from "@/app/(dashboardGroup)/profile/_components/EditProfileModal";
 
 export const instant = false;
 
@@ -35,7 +37,12 @@ const ProfilePage = async () => {
                 <Avatar
                   className={`h-32 w-32 border-4 ${user.data?.status === "UN_BAN" ? "border-green-500" : "border-red-500"} shadow-lg`}
                 >
-                  <AvatarImage src="https://avatars.githubusercontent.com/u/218392443?v=4" />
+                  <AvatarImage
+                    src={
+                      user.data?.image ||
+                      "https://avatars.githubusercontent.com/u/218392443?v=4"
+                    }
+                  />
                   <AvatarFallback>SA</AvatarFallback>
                 </Avatar>
               </div>
@@ -58,11 +65,7 @@ const ProfilePage = async () => {
                 </div>
               </div>
             </div>
-
-            <Button>
-              <Pencil className="mr-2 h-4 w-4" />
-              Edit Profile
-            </Button>
+            <EditProfileButton />
           </div>
         </CardContent>
       </Card>
@@ -102,7 +105,7 @@ const ProfilePage = async () => {
                 defaultValue="Passionate Full Stack Developer specializing in React, Next.js, Node.js, Express.js and PostgreSQL."
               />
 
-              <Button className="w-full">Save About</Button>
+              {/* <Button className="w-full">Save About</Button> */}
             </CardContent>
           </Card>
 
@@ -186,7 +189,7 @@ const ProfilePage = async () => {
                 </div>
               </div>
 
-              <Button className="mt-6">Save Changes</Button>
+              {/* <Button className="mt-6">Save Changes</Button> */}
             </CardContent>
           </Card>
 
@@ -217,6 +220,7 @@ const ProfilePage = async () => {
           </Card>
         </div>
       </div>
+      <EditProfileModal user={user.data} />
     </div>
   );
 };
