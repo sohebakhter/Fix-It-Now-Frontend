@@ -17,6 +17,7 @@ import { Button } from "../ui/button";
 // import { TNavbarProps } from "@/lib/types";
 import { logout } from "@/app/(authGroup)/_actions/authActions";
 import { TNavbarProps } from "@/lib/types";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -32,6 +33,30 @@ const userMenuItems = [
 
 export function Navbar({ user }: TNavbarProps) {
   const router = useRouter();
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  // for hide/unhide navbar, based on scrolling
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const dashboardSwitch = (): string => {
     switch (user.data.role) {
@@ -55,7 +80,11 @@ export function Navbar({ user }: TNavbarProps) {
   };
 
   return (
-    <header className="w-full border-b border-border bg-background sticky top-0 z-50">
+    <header
+      className={`w-full bg-sky/10 backdrop-blur-md border-b border-white/10 rounded-b-4xl sticky top-0 z-50 transition-transform duration-300 ease-in-out ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
         {/* Logo - left */}
         <Link href="/" className="flex items-center gap-2">
@@ -70,7 +99,7 @@ export function Navbar({ user }: TNavbarProps) {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 {link.label}
               </Link>
@@ -138,7 +167,7 @@ export function Navbar({ user }: TNavbarProps) {
             >
               <Button
                 variant="outline"
-                className="border-gray-300 hover:bg-sky-50 cursor-pointer"
+                className="border-gray-300 text-foreground hover:bg-sky-50 cursor-pointer"
               >
                 Login
               </Button>
@@ -149,7 +178,7 @@ export function Navbar({ user }: TNavbarProps) {
               className="rounded-md text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <Button
-                className="cursor-pointer border-sky-200 text-sky-600"
+                className="cursor-pointer border-sky-200 text-foreground"
                 variant={"outline"}
               >
                 Sign Up
