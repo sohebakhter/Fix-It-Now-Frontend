@@ -57,19 +57,24 @@ export default function ContactPage() {
             </h1>
 
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-300 md:text-lg">
-              Whether you need a quick repair, a scheduled service, or guidance on the right solution, we’re ready to help.
+              Whether you need a quick repair, a scheduled service, or guidance
+              on the right solution, we’re ready to help.
             </p>
           </div>
 
           <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-            <p className="text-sm uppercase tracking-[0.18em] text-sky-200">Fast response</p>
+            <p className="text-sm uppercase tracking-[0.18em] text-sky-200">
+              Fast response
+            </p>
             <div className="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/30 p-4">
               <div className="rounded-full bg-sky-500/20 p-3 text-sky-300">
                 <Phone className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-sm text-slate-300">Priority support</p>
-                <p className="text-xl font-semibold text-white">+1 (415) 555-0148</p>
+                <p className="text-xl font-semibold text-white">
+                  +1 (415) 555-0148
+                </p>
               </div>
             </div>
 
@@ -90,9 +95,15 @@ export default function ContactPage() {
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium uppercase tracking-[0.14em] text-slate-500">{title}</p>
-                  <p className="mt-1 text-lg font-semibold text-slate-900">{value}</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{text}</p>
+                  <p className="text-sm font-medium uppercase tracking-[0.14em] text-slate-500">
+                    {title}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-slate-900">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">
+                    {text}
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -101,7 +112,9 @@ export default function ContactPage() {
 
         <Card className="border-border bg-white shadow-sm">
           <CardHeader className="pb-4">
-            <CardTitle className="text-2xl text-slate-900">Send a message</CardTitle>
+            <CardTitle className="text-2xl text-slate-900">
+              Send a message
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-5 p-6 pt-0">
             <div className="grid gap-5 md:grid-cols-2">
@@ -127,7 +140,11 @@ export default function ContactPage() {
 
             <div className="space-y-2">
               <Label htmlFor="message">How can we help?</Label>
-              <Textarea id="message" placeholder="Tell us about your project, timeline, and any questions you have." className="min-h-32" />
+              <Textarea
+                id="message"
+                placeholder="Tell us about your project, timeline, and any questions you have."
+                className="min-h-32"
+              />
             </div>
 
             <Button className="w-full rounded-full md:w-auto" size="lg">

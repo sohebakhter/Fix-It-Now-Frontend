@@ -6,11 +6,11 @@ const SignUpPage = () => {
   return (
     <div className="min-h-[calc(100vh-64px)] grid lg:grid-cols-12 bg-gray-50 dark:bg-gray-950 font-sans">
       {/* Left side: Project Info & Vibes */}
-      <div className="hidden lg:flex lg:col-span-6 relative overflow-hidden bg-linear-to-br from-sky-600 via-sky-500 to-sky-500 flex-col justify-between p-12 text-white">
+      <div className="hidden lg:flex lg:col-span-6 relative overflow-hidden bg-linear-to-br from-sky-900 via-sky-800 to-sky-700 flex-col justify-between p-12 text-white">
         {/* Background decorative patterns */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
         <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-        <div className="absolute right-10 top-1/3 w-60 h-60 rounded-full bg-sky-400/20 blur-2xl pointer-events-none" />
+        <div className="absolute right-10 top-1/3 w-60 h-60 rounded-full bg-sky-500/20 blur-2xl pointer-events-none" />
 
         {/* Brand Header */}
         <div className="relative z-10 flex items-center gap-3">
@@ -29,7 +29,9 @@ const SignUpPage = () => {
               Get Your Home Services Handled Professionally.
             </h1>
             <p className="text-lg text-orange-50/90 leading-relaxed font-light">
-              Connect with top-rated technicians in your area or sign up as a service provider to grow your client base. Fast, reliable, and secure.
+              Connect with top-rated technicians in your area or sign up as a
+              service provider to grow your client base. Fast, reliable, and
+              secure.
             </p>
           </div>
 
@@ -38,8 +40,12 @@ const SignUpPage = () => {
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-3.5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
               <ShieldCheck className="h-6 w-6 text-orange-200 shrink-0" />
               <div>
-                <h4 className="font-semibold text-sm">Verified Professionals</h4>
-                <p className="text-xs text-orange-100/80">Every technician is background-checked and certified.</p>
+                <h4 className="font-semibold text-sm">
+                  Verified Professionals
+                </h4>
+                <p className="text-xs text-orange-100/80">
+                  Every technician is background-checked and certified.
+                </p>
               </div>
             </div>
 
@@ -47,15 +53,21 @@ const SignUpPage = () => {
               <Clock className="h-6 w-6 text-orange-200 shrink-0" />
               <div>
                 <h4 className="font-semibold text-sm">Real-time Scheduling</h4>
-                <p className="text-xs text-orange-100/80">Book services instantly at times that suit you best.</p>
+                <p className="text-xs text-orange-100/80">
+                  Book services instantly at times that suit you best.
+                </p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm p-3.5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
               <CheckCircle className="h-6 w-6 text-orange-200 shrink-0" />
               <div>
-                <h4 className="font-semibold text-sm">Satisfaction Guaranteed</h4>
-                <p className="text-xs text-orange-100/80">Not satisfied? We will make it right, guaranteed.</p>
+                <h4 className="font-semibold text-sm">
+                  Satisfaction Guaranteed
+                </h4>
+                <p className="text-xs text-orange-100/80">
+                  Not satisfied? We will make it right, guaranteed.
+                </p>
               </div>
             </div>
           </div>
@@ -65,20 +77,31 @@ const SignUpPage = () => {
         <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-6">
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
-              <div className="w-8 h-8 rounded-full border-2 border-sky-500 bg-gray-300 overflow-hidden">
+              <div className="w-8 h-8 rounded-full border-2 border-sky-700 bg-gray-300 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&fit=crop&crop=faces&q=80" alt="avatar" />
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&fit=crop&crop=faces&q=80"
+                  alt="avatar"
+                />
               </div>
-              <div className="w-8 h-8 rounded-full border-2 border-sky-500 bg-gray-300 overflow-hidden">
+              <div className="w-8 h-8 rounded-full border-2 border-sky-700 bg-gray-300 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&fit=crop&crop=faces&q=80" alt="avatar" />
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&fit=crop&crop=faces&q=80"
+                  alt="avatar"
+                />
               </div>
-              <div className="w-8 h-8 rounded-full border-2 border-sky-500 bg-gray-300 overflow-hidden">
+              <div className="w-8 h-8 rounded-full border-2 border-sky-700 bg-gray-300 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://images.unsplash.com/photo-1628157582853-a796fa650a6a?w=80&fit=crop&crop=faces&q=80" alt="avatar" />
+                <img
+                  src="https://images.unsplash.com/photo-1628157582853-a796fa650a6a?w=80&fit=crop&crop=faces&q=80"
+                  alt="avatar"
+                />
               </div>
             </div>
-            <span className="text-xs font-medium text-orange-100">Joined by 10k+ users</span>
+            <span className="text-xs font-medium text-orange-100">
+              Joined by 10k+ users
+            </span>
           </div>
 
           <div className="flex items-center gap-1">
