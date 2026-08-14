@@ -44,7 +44,7 @@ const contactDetails = [
 
 export default function ContactPage() {
   return (
-    <main className="pb-20 pt-8 md:pt-12">
+    <main className="px-4 pb-2">
       <section className="rounded-[2rem] border border-border bg-linear-to-br from-slate-900 via-slate-900 to-sky-950 p-6 text-white shadow-xl md:p-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
           <div>

@@ -52,7 +52,7 @@ const steps = [
 
 export default function AboutPage() {
   return (
-    <main className="pb-20 pt-8 md:pt-12">
+    <main className="px-4 pb-2">
       <section className="relative overflow-hidden rounded-[2rem] border border-border bg-linear-to-br from-sky-50 via-white to-indigo-50 p-6 shadow-sm md:p-10">
         <div className="absolute -right-10 top-8 h-40 w-40 rounded-full bg-sky-200/60 blur-3xl" />
         <div className="absolute left-0 top-12 h-24 w-24 rounded-full bg-indigo-200/60 blur-3xl" />
