@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, LogOut, Settings, User } from "lucide-react";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -21,7 +21,6 @@ import { TNavbarProps } from "@/lib/types";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -29,7 +28,6 @@ const navLinks = [
 const userMenuItems = [
   { label: "Profile", href: "/profile", icon: User },
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function Navbar({ user }: TNavbarProps) {
