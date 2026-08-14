@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import ContactButton from "./_components/ContactButton";
 
 const contactDetails = [
   {
@@ -148,7 +149,7 @@ export default function ContactPage() {
             </div>
 
             <Button className="w-full rounded-full md:w-auto" size="lg">
-              Send message
+              <ContactButton />
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </CardContent>
