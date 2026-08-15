@@ -104,3 +104,60 @@ export const signUp = async (prevState: TSignUpState, formData: FormData) => {
 
     return result;
 };
+
+export const sendOtpAction = async (email: string): Promise<{ success: boolean; message: string }> => {
+    try {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/send-otp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+        });
+        const result = await res.json();
+        return result;
+    } catch (error) {
+        return {
+            success: false,
+            message: (error as Error).message || "Failed to send OTP",
+        };
+    }
+};
+
+export const verifyOtpAction = async (email: string, otp: string) => {
+    try {
+
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/verify-otp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp }),
+        });
+        const result = await res.json();
+        return result;
+
+    } catch (error) {
+        return {
+            success: false,
+            message: (error as Error).message || "Failed to send OTP",
+        };
+    }
+}
+
+export const resetPasswordAction = async (
+    email: string,
+    otp: string,
+    newPassword: string
+): Promise<{ success: boolean; message: string }> => {
+    try {
+        const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/reset-password`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp, password: newPassword }),
+        });
+        const result = await res.json();
+        return result;
+    } catch (error) {
+        return {
+            success: false,
+            message: (error as Error).message || "Failed to reset password",
+        };
+    }
+};

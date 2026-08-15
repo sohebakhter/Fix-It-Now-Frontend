@@ -5,7 +5,7 @@ import { jwtUtils } from './utils/jwt';
 import { JwtPayload } from 'jsonwebtoken';
 import { getNewAccessToken } from './service/tokenRevalidation';
 
-const AUTH_ROUTES = ['/login', '/signup'];
+const AUTH_ROUTES = ['/login', '/signup', '/forgot-password'];
 
 const PUBLIC_ROUTES = ['/', '/services', '/about', '/contact'];
 
