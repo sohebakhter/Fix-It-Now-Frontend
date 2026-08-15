@@ -48,7 +48,7 @@ const LoginForm = () => {
               name="email"
               type="email"
               placeholder="name@example.com"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
           </div>
@@ -65,7 +65,7 @@ const LoginForm = () => {
             </Label>
             <Link
               href="/forgot-password"
-              className="text-xs font-semibold text-sky-500 hover:text-sky-600 transition-colors"
+              className="text-xs font-semibold text-sky-700 hover:text-sky-800 transition-colors"
             >
               Forgot Password?
             </Link>
@@ -77,7 +77,7 @@ const LoginForm = () => {
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
             <Eye
@@ -109,7 +109,7 @@ const LoginForm = () => {
         Don&apos;t have an account?{" "}
         <Link
           href="/signup"
-          className="font-medium text-sky-500 hover:text-sky-600 hover:underline underline-offset-4 transition-colors"
+          className="font-medium text-sky-700 hover:text-sky-800 hover:underline underline-offset-4 transition-colors"
         >
           Sign Up Now
         </Link>

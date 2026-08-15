@@ -26,12 +26,8 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    if (state) {
-      if (state.success) {
-        toast.success("Account created successfully!");
-      } else {
-        toast.error(state.message || "Registration failed. Please try again.");
-      }
+    if (state && !state.success) {
+      toast.error(state.message || "Registration failed. Please try again.");
     }
   }, [state]);
 
@@ -53,7 +49,7 @@ const SignUpForm = () => {
               name="name"
               type="text"
               placeholder="e.g. John Doe"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
           </div>
@@ -74,7 +70,7 @@ const SignUpForm = () => {
               name="email"
               type="email"
               placeholder="name@example.com"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
           </div>
@@ -95,7 +91,7 @@ const SignUpForm = () => {
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
             <Eye
@@ -120,7 +116,7 @@ const SignUpForm = () => {
               name="image"
               type="url"
               placeholder="https://example.com/avatar.jpg"
-              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-500 focus-visible:border-sky-500 transition-all duration-200"
+              className="pl-9 h-11 border-gray-200 dark:border-gray-800 rounded-xl focus-visible:ring-sky-700 focus-visible:border-sky-800 transition-all duration-200"
               required
             />
           </div>
@@ -139,14 +135,14 @@ const SignUpForm = () => {
               onClick={() => setSelectedRole("CUSTOMER")}
               className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${
                 selectedRole === "CUSTOMER"
-                  ? "border-sky-500 bg-sky-50/50 dark:bg-sky-950/20 scale-[1.02] shadow-sm"
+                  ? "border-sky-700 bg-sky-50/50 dark:bg-sky-950/20 scale-[1.02] shadow-sm"
                   : "border-gray-200 dark:border-gray-800 hover:border-sky-200 dark:hover:border-sky-950/50"
               }`}
             >
               <div
                 className={`p-2.5 rounded-xl mb-2 transition-colors duration-300 ${
                   selectedRole === "CUSTOMER"
-                    ? "bg-sky-500 text-white"
+                    ? "bg-sky-700 text-white"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-500"
                 }`}
               >
@@ -165,14 +161,14 @@ const SignUpForm = () => {
               onClick={() => setSelectedRole("TECHNICIAN")}
               className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${
                 selectedRole === "TECHNICIAN"
-                  ? "border-sky-500 bg-sky-50/50 dark:bg-sky-950/20 scale-[1.02] shadow-sm"
+                  ? "border-sky-700 bg-sky-50/50 dark:bg-sky-950/20 scale-[1.02] shadow-sm"
                   : "border-gray-200 dark:border-gray-800 hover:border-sky-200 dark:hover:border-sky-950/50"
               }`}
             >
               <div
                 className={`p-2.5 rounded-xl mb-2 transition-colors duration-300 ${
                   selectedRole === "TECHNICIAN"
-                    ? "bg-sky-500 text-white"
+                    ? "bg-sky-700 text-white"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-500"
                 }`}
               >

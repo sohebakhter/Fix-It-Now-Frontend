@@ -53,11 +53,11 @@ export const loginAction = async (redirectTo: string, prevState: LoginState, for
         redirect(redirectTo, "replace");
     }
 
-    if (decodedToken.role === "CUSTOMER") {
+    if (decodedToken?.role === "CUSTOMER") {
         redirect("/dashboard");
-    } else if (decodedToken.role === "TECHNICIAN") {
+    } else if (decodedToken?.role === "TECHNICIAN") {
         redirect("/technician-dashboard");
-    } else if (decodedToken.role === "ADMIN") {
+    } else if (decodedToken?.role === "ADMIN") {
         redirect("/admin-dashboard");
     }
 
@@ -77,10 +77,10 @@ export const signUp = async (prevState: TSignUpState, formData: FormData) => {
     const password = formData.get("password") as string;
     const image = formData.get("image") as string;
     const role = formData.get("role") as string;
-    const experience = formData.get("experience") as string || "";
 
-    const payload = { name, email, password, image, role, experience };
+    const payload = { name, email, password, image, role };
 
+    let result;
     try {
         const res = await fetch(`${process.env.BACKEND_API_URL}/api/users/register`, {
             method: "POST",
@@ -90,11 +90,7 @@ export const signUp = async (prevState: TSignUpState, formData: FormData) => {
             body: JSON.stringify(payload),
         });
 
-        const result = await res.json();
-        if (result.success) {
-            redirect("/login");
-        }
-        return result;
+        result = await res.json();
     } catch (error) {
         return {
             success: false,
@@ -102,4 +98,9 @@ export const signUp = async (prevState: TSignUpState, formData: FormData) => {
         };
     }
 
+    if (result?.success) {
+        redirect("/login");
+    }
+
+    return result;
 };
