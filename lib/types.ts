@@ -135,25 +135,47 @@ export type TTechnicianBooking = {
     price?: number;
     status?: string;
     category?: {
+      id: string;
       name: string;
+      createdAt: string;
+      updatedAt: string;
     };
+  };
+  payment?: {
+    id: string;
+    bookingId: string;
+    customerId: string;
+    serviceId: string;
+    amount: number;
+    status: "PENDING" | "PAID" | "FAILED" | "REFUNDED";
+    stripeCheckoutSessionId?: string;
+    stripePaymentIntentId?: string;
+    createdAt: string;
+    updatedAt: string;
   };
   availability?: {
     id: string;
+    technicianId: string;
     date: string;
     startTime: string;
     endTime: string;
+    createdAt: string;
+    updatedAt: string;
   };
   customer?: {
     id: string;
     name: string;
     email: string;
+    image: string;
+    stripeCustomerId: string;
+    role: string;
+    status: string;
+    resetOtp: string;
+    otpExpiry: string;
+    createdAt: string;
+    updatedAt: string;
   };
-  payment?: {
-    id: string;
-    amount: number;
-    status: "PENDING" | "PAID" | "FAILED";
-  };
+
 };
 
 export type TCategory = {

@@ -89,7 +89,8 @@ export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
           const hasBookingsArr = Array.isArray(a.bookings)
             ? a.bookings.length > 0
             : Boolean(a.bookings);
-          const isBooked = hasBookingObj || hasBookingsArr || bookedIds.has(a.id);
+          const isBooked =
+            hasBookingObj || hasBookingsArr || bookedIds.has(a.id);
           return isSameTech && !isBooked;
         });
 
@@ -137,6 +138,7 @@ export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
       toast.success(res.message || "Booking created successfully!");
       setIsOpen(false);
       router.refresh();
+      router.push("/dashboard/my-bookings");
     } else {
       const msg = res.message || "This slot is already booked";
       toast.error(msg);
@@ -199,7 +201,10 @@ export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
               {isAdmin && (
                 <div className="flex items-center gap-1 shrink-0">
                   <EditServiceButton service={service} />
-                  <DeleteServiceButton serviceId={service.id} serviceTitle={service.title} />
+                  <DeleteServiceButton
+                    serviceId={service.id}
+                    serviceTitle={service.title}
+                  />
                 </div>
               )}
             </div>

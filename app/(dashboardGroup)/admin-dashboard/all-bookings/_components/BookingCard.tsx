@@ -15,6 +15,20 @@ interface BookingCardProps {
 }
 
 export function BookingCard({ booking }: BookingCardProps) {
+  const bookingService = (booking.service ?? {}) as NonNullable<
+    TTechnicianBooking["service"]
+  >;
+  const bookingCustomer = (booking.customer ?? {}) as NonNullable<
+    TTechnicianBooking["customer"]
+  >;
+  const bookingAvailability = (booking.availability ?? {}) as NonNullable<
+    TTechnicianBooking["availability"]
+  >;
+  const paymentStatus = booking.payment?.status ?? "PENDING";
+  const serviceTitle = bookingService.title ?? "Unnamed Service";
+  const serviceCategory = bookingService.category?.name ?? "Service Category";
+  const servicePrice = bookingService.price ?? 0;
+
   // Date/Time Formatting Helpers
   const formatDate = (dateStr?: string) => {
     if (!dateStr) return "N/A";
@@ -85,7 +99,7 @@ export function BookingCard({ booking }: BookingCardProps) {
             variant="secondary"
             className="rounded-lg text-xs font-semibold px-2 py-0.5"
           >
-            {booking.service?.category?.name || "Service Category"}
+            {serviceCategory}
           </Badge>
           <Badge
             variant="outline"
@@ -95,7 +109,7 @@ export function BookingCard({ booking }: BookingCardProps) {
           </Badge>
         </div>
         <CardTitle className="text-base font-extrabold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-          {booking.service?.title || "Unnamed Service"}
+          {serviceTitle}
         </CardTitle>
       </CardHeader>
 
@@ -109,10 +123,10 @@ export function BookingCard({ booking }: BookingCardProps) {
             <User className="size-4 text-muted-foreground shrink-0 mt-0.5" />
             <div className="min-w-0">
               <p className="text-sm font-bold text-foreground leading-tight truncate">
-                {booking.customer?.name || "Anonymous Client"}
+                {bookingCustomer.name || "Anonymous Client"}
               </p>
               <p className="text-xs text-muted-foreground truncate">
-                {booking.customer?.email || "No email available"}
+                {bookingCustomer.email || "No email available"}
               </p>
             </div>
           </div>
@@ -127,14 +141,14 @@ export function BookingCard({ booking }: BookingCardProps) {
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Calendar className="size-3.5 shrink-0 text-muted-foreground/80" />
               <span className="font-semibold truncate">
-                {formatDate(booking.availability?.date)}
+                {formatDate(bookingAvailability.date)}
               </span>
             </div>
             <div className="flex items-center gap-1.5 text-muted-foreground justify-end">
               <Clock className="size-3.5 shrink-0 text-muted-foreground/80" />
               <span className="font-bold text-foreground truncate">
-                {formatTime(booking.availability?.startTime)} –{" "}
-                {formatTime(booking.availability?.endTime)}
+                {formatTime(bookingAvailability.startTime)} –{" "}
+                {formatTime(bookingAvailability.endTime)}
               </span>
             </div>
           </div>
@@ -145,15 +159,15 @@ export function BookingCard({ booking }: BookingCardProps) {
           <div className="flex items-center gap-1.5 text-muted-foreground">
             <CreditCard className="size-3.5 shrink-0 text-muted-foreground/80" />
             <span className="font-bold text-foreground">
-              {booking.payment?.amount || booking.service?.price || 0} BDT
+              {booking.payment?.amount ?? servicePrice} BDT
             </span>
           </div>
 
           <Badge
             variant="outline"
-            className={`rounded-lg px-2 py-0.5 text-[10px] font-bold ${getPaymentBadgeStyle(booking.payment?.status || "PENDING")}`}
+            className={`rounded-lg px-2 py-0.5 text-[10px] font-bold ${getPaymentBadgeStyle(paymentStatus)}`}
           >
-            Payment: {booking.payment?.status || "PENDING"}
+            Payment: {paymentStatus}
           </Badge>
         </div>
       </CardContent>

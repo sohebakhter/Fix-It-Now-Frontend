@@ -109,6 +109,7 @@ export function ServicesList({ initialServices, categories }: ServicesListProps)
           description: description.trim(),
           location: location.trim(),
           price: parsedPrice,
+          status: "ACTIVE",
         };
 
         const response = await createServiceAction(payload);
