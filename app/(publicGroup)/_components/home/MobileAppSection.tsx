@@ -45,7 +45,7 @@ export function MobileAppSection() {
           </Button>
         </div>
 
-        <div className="relative flex min-h-[22rem] sm:min-h-[26rem] lg:min-h-105 items-center justify-center overflow-hidden">
+        <div className="relative flex min-h-88 sm:min-h-104 lg:min-h-105 items-center justify-center overflow-hidden">
           <div className="absolute inset-x-10 top-8 h-24 rounded-full bg-white/50 blur-3xl" />
           <div className="relative flex w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-140 items-center justify-center gap-3 sm:gap-5">
             <div className="flex-1 min-w-0 rounded-[32px] border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.12)]">

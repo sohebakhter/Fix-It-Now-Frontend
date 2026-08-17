@@ -77,7 +77,7 @@ export default function DashboardSidebar({ user }: TNavbarProps) {
                   isActive ? "text-primary" : "text-muted-foreground"
                 )}
               />
-              <span className="leading-none truncate max-w-[4.5rem] text-center">
+              <span className="leading-none truncate max-w-18 text-center">
                 {item.label}
               </span>
             </Link>
