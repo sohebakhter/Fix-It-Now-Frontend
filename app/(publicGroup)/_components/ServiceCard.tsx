@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { IService } from "@/lib/types";
+import { IService, TAvailability } from "@/lib/types";
 import {
   MapPin,
   Star,
@@ -36,7 +36,6 @@ import {
   createBookingAction,
   getAvailabilities,
   getMyBookings,
-  TAvailability,
 } from "../_actions/bookingActions";
 import EditServiceButton from "./EditServiceButton";
 import DeleteServiceButton from "./DeleteServiceButton";

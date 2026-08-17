@@ -3,25 +3,6 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export type TAvailability = {
-  id: string;
-  technicianId: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  createdAt?: string;
-  updatedAt?: string;
-  technicianProfile?: {
-    id: string;
-    userId: string;
-    experience: string;
-    rating: string;
-    createdAt?: string;
-    updatedAt?: string;
-  };
-  bookings?: unknown[];
-  booking?: unknown;
-};
 
 export const getAvailabilities = async () => {
   try {
