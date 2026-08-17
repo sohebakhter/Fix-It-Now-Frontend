@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export function MobileAppSection() {
   return (
-    <section className="mt-10 rounded-[32px] bg-[#edf4ff] p-6 md:p-8">
+    <section className="mt-10 rounded-[32px] bg-[#edf4ff] p-5 sm:p-6 md:p-8">
       <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-5">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">
             Mobile app
           </p>
-          <h2 className="text-3xl font-bold tracking-tighter text-slate-900 md:text-5xl">
+          <h2 className="text-2xl font-bold tracking-tighter text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl">
             Explore home service on the go.
           </h2>
           <p className="max-w-md text-base leading-7 text-slate-600">
@@ -45,10 +45,10 @@ export function MobileAppSection() {
           </Button>
         </div>
 
-        <div className="relative flex min-h-105 items-center justify-center">
+        <div className="relative flex min-h-[22rem] sm:min-h-[26rem] lg:min-h-105 items-center justify-center overflow-hidden">
           <div className="absolute inset-x-10 top-8 h-24 rounded-full bg-white/50 blur-3xl" />
-          <div className="relative flex w-full max-w-140 items-center justify-center gap-5">
-            <div className="w-55 rounded-[32px] border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.12)]">
+          <div className="relative flex w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-140 items-center justify-center gap-3 sm:gap-5">
+            <div className="flex-1 min-w-0 rounded-[32px] border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.12)]">
               <div className="rounded-[24px] bg-slate-100 p-3">
                 <div className="mb-4 flex items-center justify-between text-xs text-slate-500">
                   <span>Home</span>
@@ -79,7 +79,7 @@ export function MobileAppSection() {
               </div>
             </div>
 
-            <div className="w-52.5 rounded-[32px] border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.12)]">
+            <div className="flex-1 min-w-0 rounded-[32px] border border-slate-200 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.12)]">
               <div className="rounded-[24px] bg-linear-to-br from-sky-50 to-indigo-50 p-4">
                 <div className="flex items-center justify-between">
                   <div>
