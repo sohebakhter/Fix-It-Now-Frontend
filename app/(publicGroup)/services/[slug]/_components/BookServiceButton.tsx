@@ -24,9 +24,8 @@ import {
   createBookingAction,
   getAvailabilities,
   getMyBookings,
-  TAvailability,
 } from "@/app/(publicGroup)/_actions/bookingActions";
-import { BookServiceButtonProps } from "@/lib/types";
+import { BookServiceButtonProps, TAvailability } from "@/lib/types";
 
 function formatDate(dateStr: string) {
   try {

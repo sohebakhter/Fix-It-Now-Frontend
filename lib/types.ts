@@ -196,6 +196,25 @@ export type TPaymentItem = {
   paymentMethod?: string;
   createdAt: string;
   updatedAt: string;
+  service?: {
+    id: string;
+    technicianId: string;
+    categoryId: string;
+    title: string;
+    description?: string;
+    location?: string;
+    price?: number;
+    status?: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: null
+    category: {
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    };
+  };
   booking?: {
     id: string;
     service?: {

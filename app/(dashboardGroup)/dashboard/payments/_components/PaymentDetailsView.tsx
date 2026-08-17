@@ -150,7 +150,7 @@ function DetailRow({
 }
 
 export function PaymentDetailsView({ payment }: PaymentDetailsViewProps) {
-  const serviceTitle = payment.booking?.service?.title ?? "Service";
+  const serviceTitle = payment.service?.title ?? "Service";
   const categoryName = payment.booking?.service?.category?.name;
 
   return (

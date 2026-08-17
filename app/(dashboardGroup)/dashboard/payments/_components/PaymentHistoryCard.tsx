@@ -78,8 +78,8 @@ function formatDate(dateStr?: string) {
 }
 
 export function PaymentHistoryCard({ payment }: PaymentHistoryCardProps) {
-  const serviceTitle = payment.booking?.service?.title ?? "Service";
-  const categoryName = payment.booking?.service?.category?.name;
+  const serviceTitle = payment.service?.title ?? "Service";
+  const categoryName = payment.service?.category?.name ?? "Category";
 
   return (
     <Card className="flex flex-col justify-between overflow-hidden rounded-3xl border border-border/80 bg-card/60 backdrop-blur-xs transition-all duration-200 hover:shadow-md">

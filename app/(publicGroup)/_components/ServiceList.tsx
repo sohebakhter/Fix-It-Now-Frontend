@@ -19,6 +19,7 @@ export default async function ServiceList({ query = {} }: ServiceListProps) {
 
   const user = await getMe();
   const isAdmin = user?.data?.role === "ADMIN";
+  const isTechnician = user?.data?.role === "TECHNICIAN";
 
   if (!result?.success || !services.length) {
     return (
@@ -56,7 +57,12 @@ export default async function ServiceList({ query = {} }: ServiceListProps) {
       {/* Grid of Service Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {services.map((service: IService) => (
-          <ServiceCard key={service.id} service={service} isAdmin={isAdmin} />
+          <ServiceCard
+            key={service.id}
+            service={service}
+            isAdmin={isAdmin}
+            isTechnician={isTechnician}
+          />
         ))}
       </div>
 

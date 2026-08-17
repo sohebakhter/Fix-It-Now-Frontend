@@ -44,9 +44,14 @@ import { ServiceDetailsButton } from "./ServiceDetailsButton";
 type ServiceCardProps = {
   service: IService;
   isAdmin?: boolean;
+  isTechnician?: boolean;
 };
 
-export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  isAdmin,
+  isTechnician,
+}: ServiceCardProps) {
   const router = useRouter();
   const ratingNum = service.technician?.rating
     ? parseFloat(service.technician.rating)
@@ -262,19 +267,22 @@ export function ServiceCard({ service, isAdmin }: ServiceCardProps) {
               ${service.price ? service.price.toFixed(2) : "0.00"}
             </span>
           </div>
-
-          <div className="flex flex-col items-center gap-1">
-            <ServiceDetailsButton serviceId={service.id} />
-            <Button
-              size="sm"
-              onClick={handleOpenModal}
-              disabled={!isActive}
-              className="gap-1.5 rounded-xl font-medium shadow-xs transition-all bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              <Calendar className="size-3.5" />
-              <span>Book Now</span>
-            </Button>
-          </div>
+          {!isTechnician && (
+            <div className="flex flex-col items-center gap-1">
+              <ServiceDetailsButton serviceId={service.id} />
+              {!isAdmin && (
+                <Button
+                  size="sm"
+                  onClick={handleOpenModal}
+                  disabled={!isActive}
+                  className="gap-1.5 rounded-xl font-medium shadow-xs transition-all bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  <Calendar className="size-3.5" />
+                  <span>Book Now</span>
+                </Button>
+              )}
+            </div>
+          )}
         </CardFooter>
       </Card>
 
